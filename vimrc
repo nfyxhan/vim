@@ -58,6 +58,7 @@ set noautochdir
 set noshowmatch
 set nowrapscan
 set number
+set relativenumber
 set pastetoggle=<F5>
 set path+=./model/,./ctrl/,./lib/,*/templates/,*/static/,..,*/src/main/java/
 set printoptions=formfeed:y,header:0,paper:A4,duplex:off,syntax:n
@@ -74,6 +75,12 @@ set undodir=~/.vimtmp/undodir
             \ undofile
 set vb t_vb=                                " Turn off bi-sound of vim.
 set wildignore+=*.git\\*,*.tgz,*.zip,*.url,*.pyc,*.class
+set backspace=2
+set listchars=tab:..,trail:.
+set list
+set wildmenu
+set wildmode=longest:list,full
+set nocp
 syntax on
 
 "
@@ -101,8 +108,8 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
-Plug 'posva/vim-vue'
-Plug 'alvan/vim-php-manual'
+"Plug 'posva/vim-vue'
+"Plug 'alvan/vim-php-manual'
 Plug 'cespare/vim-toml'
 Plug 'godlygeek/tabular'
 Plug 'kien/ctrlp.vim'
@@ -113,6 +120,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
 Plug 'vim-syntastic/syntastic'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'whatyouhide/vim-gotham'
 call plug#end()
 
 let g:vim_markdown_folding_disabled = 1
@@ -193,3 +202,5 @@ let g:ctrlp_mruf_default_order = 1
 let g:timeStampFormat = '170101'
 let g:timeStampString = '%y%m%d'
 let g:timeStampLeader = 'version'
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
